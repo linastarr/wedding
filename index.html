@@ -1,0 +1,1622 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Свадьба | Ульяна & Вадим</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cream: #F9F6F0;
+            --ivory: #FDFBF7;
+            --white: #FFFFFF;
+            --charcoal: #1A1A1A;
+            --dark-charcoal: #0D0D0D;
+            --gold: #B8975A;
+            --gold-light: #C9A96E;
+            --gold-pale: #D4C5A9;
+            --sage: #4A5D4E;
+            --sage-light: #6B7F6E;
+            --taupe: #8B6F5E;
+            --blush: #D4C5B9;
+            --blush-light: #E8DCD3;
+            --burgundy: #5C2D36;
+            --border-subtle: #E5DDD0;
+            --shadow-soft: 0 4px 30px rgba(0, 0, 0, 0.06);
+            --shadow-card: 0 8px 50px rgba(0, 0, 0, 0.08);
+            --transition: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --transition-slow: 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            background-color: var(--ivory);
+            color: var(--charcoal);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-weight: 500;
+        }
+
+        /* ============ NAVIGATION ============ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.2rem 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: var(--transition);
+            background: transparent;
+            mix-blend-mode: difference;
+        }
+
+        .nav.scrolled {
+            background: rgba(249, 246, 240, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            mix-blend-mode: normal;
+            padding: 0.8rem 3rem;
+            box-shadow: 0 1px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav.scrolled .nav__logo,
+        .nav.scrolled .nav__link {
+            color: var(--charcoal);
+        }
+
+        .nav.scrolled .nav__link::after {
+            background: var(--gold);
+        }
+
+        .nav__logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: #fff;
+            text-decoration: none;
+            transition: var(--transition);
+            white-space: nowrap;
+        }
+
+        .nav__logo span {
+            color: var(--gold-light);
+        }
+
+        .nav__links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav__link {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #fff;
+            text-decoration: none;
+            position: relative;
+            padding: 0.3rem 0;
+            transition: var(--transition);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .nav__link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold-light);
+            transition: width 0.35s ease;
+        }
+
+        .nav__link:hover::after {
+            width: 100%;
+        }
+
+        .nav__burger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .nav__burger span {
+            display: block;
+            width: 26px;
+            height: 2px;
+            background: #fff;
+            transition: var(--transition);
+            border-radius: 1px;
+        }
+
+        .nav.scrolled .nav__burger span {
+            background: var(--charcoal);
+        }
+
+        .nav__burger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav__burger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav__burger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ============ HERO SECTION ============ */
+        .hero {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 650px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--dark-charcoal);
+        }
+
+        .hero__image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 30%;
+            filter: brightness(0.7) saturate(0.9);
+            transform: scale(1.05);
+            animation: heroZoom 8s ease-out forwards;
+            will-change: transform;
+        }
+
+        @keyframes heroZoom {
+            from { transform: scale(1.15); }
+            to { transform: scale(1.05); }
+        }
+
+        .hero__overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom,
+                    rgba(13, 13, 13, 0.2) 0%,
+                    rgba(13, 13, 13, 0.05) 35%,
+                    rgba(13, 13, 13, 0.15) 65%,
+                    rgba(13, 13, 13, 0.5) 100%);
+            z-index: 1;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: #fff;
+            padding: 2rem;
+            animation: fadeInUp 1.2s ease-out 0.3s both;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero__pretitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.35em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .hero__names {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 6vw, 5.5rem);
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+        }
+
+        .hero__names span {
+            display: block;
+            font-size: 0.35em;
+            font-weight: 400;
+            letter-spacing: 0.2em;
+            color: var(--gold-light);
+            margin: 0.5rem 0;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero__divider {
+            width: 80px;
+            height: 1px;
+            background: var(--gold-light);
+            margin: 1.8rem auto;
+            position: relative;
+        }
+
+        .hero__divider::after {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 7px;
+            height: 7px;
+            background: var(--gold-light);
+            border-radius: 50%;
+        }
+
+        .hero__date {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            font-style: italic;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 0 1px 8px rgba(0,0,0,0.3);
+        }
+
+        /* ============ БОКОВЫЕ ФОТО В HERO ============ */
+        .hero__side-photo {
+            position: absolute;
+            z-index: 3;
+            width: 300px; /* Ставьте любую нужную ширину */
+            aspect-ratio: 2 / 3; /* Пропорция 2:3 (как у ваших 160x240) */
+            height: auto;
+            object-fit: cover;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255,255,255,0.7);
+            transition: transform 0.6s ease, box-shadow 0.6s ease;
+            animation: sideFadeIn 1s ease-out 0.5s both;
+            display: block;
+        }
+
+        .hero__side-photo--left {
+            left: 40px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-2deg);
+        }
+
+        .hero__side-photo--right {
+            right: 40px;
+            top: 50%;
+            transform: translateY(-50%) rotate(2deg);
+        }
+
+        .hero__side-photo:hover {
+            transform: translateY(-50%) rotate(0deg) scale(1.03);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+            border-color: var(--gold-light);
+        }
+
+        @keyframes sideFadeIn {
+            from { opacity: 0; transform: translateY(-50%) rotate(0deg) scale(0.9); }
+            to { opacity: 1; }
+        }
+
+        /* Скрываем боковые фото на узких экранах */
+        @media (max-width: 1024px) {
+            .hero__side-photo {
+                display: none;
+            }
+        }
+
+        /* ============ COUNTDOWN ============ */
+        .countdown-section {
+            background: var(--cream);
+            padding: 5rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .countdown__title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--taupe);
+            margin-bottom: 2.5rem;
+        }
+
+        .countdown__grid {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown__item {
+            text-align: center;
+            min-width: 80px;
+        }
+
+        .countdown__number {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 5vw, 4.5rem);
+            font-weight: 600;
+            color: var(--charcoal);
+            letter-spacing: 0.03em;
+            line-height: 1;
+            display: block;
+        }
+
+        .countdown__label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--taupe);
+            margin-top: 0.6rem;
+            display: block;
+        }
+
+        .countdown__divider {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: var(--gold-light);
+            align-self: center;
+            display: block;
+            margin-top: -0.3rem;
+        }
+
+        /* ============ DETAILS SECTION — ВЕРТИКАЛЬНЫЙ ТАЙМЛАЙН ============ */
+        .details {
+            padding: 6rem 2rem;
+            background: var(--white);
+            position: relative;
+        }
+
+        .details__inner {
+            max-width: 750px;
+            margin: 0 auto;
+        }
+
+        .details__section-title {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .details__section-subtitle {
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 3rem;
+        }
+
+        .details__divider {
+            width: 50px;
+            height: 1px;
+            background: var(--gold-light);
+            margin: 0 auto 2.5rem;
+            position: relative;
+        }
+
+        .details__divider::after {
+            content: '';
+            position: absolute;
+            top: -2.5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background: var(--gold-light);
+            border-radius: 50%;
+        }
+
+        /* Таймлайн */
+        .timeline {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 8px;
+            bottom: 8px;
+            width: 1px;
+            background: var(--gold-pale);
+        }
+
+        .timeline__item {
+            position: relative;
+            padding-bottom: 2.5rem;
+        }
+
+        .timeline__item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline__dot {
+            position: absolute;
+            left: -3rem;
+            top: 4px;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 2px solid var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+            transition: var(--transition);
+        }
+
+        .timeline__dot::after {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+        .timeline__time {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--burgundy);
+            letter-spacing: 0.04em;
+            line-height: 1;
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--charcoal);
+            margin-bottom: 0.2rem;
+        }
+
+        .timeline__desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1rem;
+            font-weight: 500;
+            font-style: italic;
+            color: var(--taupe);
+            letter-spacing: 0.03em;
+        }
+
+        /* Блоки локации и размещения */
+        .location-card {
+            background: var(--ivory);
+            border: 1px solid var(--border-subtle);
+            padding: 3rem 2.5rem;
+            text-align: center;
+            position: relative;
+            margin-top: 1.5rem;
+            transition: var(--transition-slow);
+        }
+
+        .location-card:hover {
+            box-shadow: var(--shadow-card);
+            border-color: transparent;
+            transform: translateY(-3px);
+        }
+
+        .location-card::before {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 1px solid var(--gold-pale);
+            pointer-events: none;
+            opacity: 0.5;
+            transition: var(--transition-slow);
+        }
+
+        .location-card:hover::before {
+            border-color: var(--gold);
+            opacity: 0.8;
+        }
+
+        .location-card__icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .location-card__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .location-card__subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 1.2rem;
+        }
+
+        .location-card__line {
+            width: 40px;
+            height: 1px;
+            background: var(--gold-light);
+            margin: 0 auto 1.2rem;
+        }
+
+        .location-card__address {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            line-height: 1.8;
+            color: var(--charcoal);
+        }
+
+        .location-card__address strong {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            display: block;
+            font-size: 1.3rem;
+            letter-spacing: 0.06em;
+            margin-bottom: 0.2rem;
+        }
+
+        .location-card__address .note {
+            font-style: italic;
+            color: var(--taupe);
+            font-size: 0.95rem;
+            margin-top: 0.4rem;
+            display: block;
+        }
+
+        /* ============ DRESS CODE ============ */
+        .dress-code {
+            padding: 4rem 2rem;
+            background: var(--cream);
+            text-align: center;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .dress-code__inner {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .dress-code__label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--taupe);
+            margin-bottom: 1rem;
+        }
+
+        .dress-code__title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .dress-code__desc {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            font-style: italic;
+            color: var(--taupe);
+            letter-spacing: 0.03em;
+        }
+
+        .dress-code__colors {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .dress-code__color {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid var(--border-subtle);
+            transition: var(--transition);
+            cursor: default;
+        }
+
+        .dress-code__color:hover {
+            transform: scale(1.2);
+            border-color: var(--gold);
+        }
+
+        /* ============ RSVP FORM ============ */
+        .rsvp {
+            padding: 6rem 2rem;
+            background: var(--white);
+            position: relative;
+        }
+
+        .rsvp__inner {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .rsvp__header {
+            text-align: center;
+            margin-bottom: 3.5rem;
+        }
+
+        .rsvp__pretitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.8rem;
+            display: block;
+        }
+
+        .rsvp__title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--charcoal);
+            margin-bottom: 0.8rem;
+        }
+
+        .rsvp__subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            font-style: italic;
+            color: var(--taupe);
+            letter-spacing: 0.04em;
+        }
+
+        .rsvp__divider {
+            width: 60px;
+            height: 1px;
+            background: var(--gold-light);
+            margin: 1.5rem auto;
+            position: relative;
+        }
+
+        .rsvp__divider::after {
+            content: '';
+            position: absolute;
+            top: -2.5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 5px;
+            height: 5px;
+            background: var(--gold-light);
+            border-radius: 50%;
+        }
+
+        .rsvp__form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .rsvp__row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .rsvp__group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .rsvp__group.full {
+            grid-column: 1 / -1;
+        }
+
+        .rsvp__label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--taupe);
+        }
+
+        .rsvp__input,
+        .rsvp__select,
+        .rsvp__textarea {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            padding: 0.9rem 1.2rem;
+            border: 1px solid var(--border-subtle);
+            background: var(--ivory);
+            color: var(--charcoal);
+            border-radius: 0;
+            transition: var(--transition);
+            outline: none;
+            width: 100%;
+            resize: vertical;
+            -webkit-appearance: none;
+            appearance: none;
+        }
+
+        .rsvp__input:focus,
+        .rsvp__select:focus,
+        .rsvp__textarea:focus {
+            border-color: var(--gold);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(184, 151, 90, 0.06);
+        }
+
+        .rsvp__input::placeholder,
+        .rsvp__textarea::placeholder {
+            color: #c4b8a8;
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .rsvp__select {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238B6F5E' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1.2rem center;
+            padding-right: 2.8rem;
+            cursor: pointer;
+        }
+
+        .rsvp__radio-group {
+            display: flex;
+            gap: 2rem;
+            padding: 0.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .rsvp__radio {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            color: var(--charcoal);
+            position: relative;
+            padding-left: 28px;
+            user-select: none;
+        }
+
+        .rsvp__radio input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .rsvp__radio-custom {
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 18px;
+            height: 18px;
+            border: 1.5px solid var(--border-subtle);
+            border-radius: 50%;
+            background: var(--ivory);
+            transition: var(--transition);
+        }
+
+        .rsvp__radio input:checked~.rsvp__radio-custom {
+            border-color: var(--gold);
+            background: #fff;
+        }
+
+        .rsvp__radio-custom::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gold);
+            transform: scale(0);
+            transition: var(--transition);
+        }
+
+        .rsvp__radio input:checked~.rsvp__radio-custom::after {
+            transform: scale(1);
+        }
+
+        .rsvp__submit {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 1.1rem 3rem;
+            background: var(--charcoal);
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            align-self: center;
+            margin-top: 1rem;
+            position: relative;
+            overflow: hidden;
+            border-radius: 0;
+        }
+
+        .rsvp__submit:hover {
+            background: var(--gold);
+            color: #fff;
+            letter-spacing: 0.25em;
+        }
+
+        .rsvp__submit:active {
+            transform: scale(0.97);
+        }
+
+        .rsvp__success {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .rsvp__success.visible {
+            display: block;
+        }
+
+        .rsvp__success-icon {
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+
+        .rsvp__success-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            font-style: italic;
+            color: var(--charcoal);
+            letter-spacing: 0.04em;
+        }
+
+        /* ============ FOOTER ============ */
+        .footer {
+            padding: 3rem 2rem;
+            background: var(--charcoal);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer__names {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            color: var(--gold-light);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer__text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ============ REVEAL ON SCROLL ============ */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 900px) {
+            .rsvp__row {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+
+            .nav__links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 280px;
+                height: 100vh;
+                flex-direction: column;
+                background: rgba(249, 246, 240, 0.98);
+                backdrop-filter: blur(20px);
+                -webkit-backdrop-filter: blur(20px);
+                padding: 6rem 2rem 2rem;
+                gap: 2rem;
+                transition: right 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                box-shadow: -5px 0 40px rgba(0, 0, 0, 0.08);
+            }
+
+            .nav__links.active {
+                right: 0;
+            }
+
+            .nav__link {
+                color: var(--charcoal) !important;
+                font-size: 0.8rem;
+            }
+
+            .nav__burger {
+                display: flex;
+            }
+
+            .nav {
+                padding: 1rem 1.5rem;
+            }
+            .nav.scrolled {
+                padding: 0.7rem 1.5rem;
+            }
+
+            .hero__names {
+                font-size: clamp(2.2rem, 8vw, 3.5rem);
+            }
+
+            .countdown__grid {
+                gap: 1rem;
+            }
+            .countdown__item {
+                min-width: 60px;
+            }
+            .countdown__divider {
+                font-size: 2rem;
+            }
+
+            .timeline {
+                padding-left: 2.5rem;
+            }
+            .timeline::before {
+                left: 11px;
+            }
+            .timeline__dot {
+                left: -2.5rem;
+                width: 24px;
+                height: 24px;
+            }
+            .timeline__dot::after {
+                width: 6px;
+                height: 6px;
+            }
+            .timeline__time {
+                font-size: 1.3rem;
+            }
+            .timeline__title {
+                font-size: 1rem;
+            }
+
+            .details {
+                padding: 4rem 1.5rem;
+            }
+            .rsvp {
+                padding: 4rem 1.5rem;
+            }
+            .countdown-section {
+                padding: 3rem 1.5rem;
+            }
+            .location-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .details__section-title {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero__pretitle {
+                font-size: 0.65rem;
+                letter-spacing: 0.25em;
+            }
+            .hero__names {
+                font-size: 2.2rem;
+            }
+            .hero__date {
+                font-size: 1.1rem;
+            }
+            .hero__divider {
+                width: 50px;
+                margin: 1.2rem auto;
+            }
+            .countdown__number {
+                font-size: 2.2rem;
+            }
+            .countdown__label {
+                font-size: 0.55rem;
+            }
+            .countdown__divider {
+                font-size: 1.6rem;
+            }
+            .countdown__grid {
+                gap: 0.6rem;
+            }
+            .countdown__item {
+                min-width: 50px;
+            }
+            .rsvp__radio-group {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            .dress-code__colors {
+                gap: 0.6rem;
+            }
+            .dress-code__color {
+                width: 26px;
+                height: 26px;
+            }
+            .timeline {
+                padding-left: 2rem;
+            }
+            .timeline::before {
+                left: 9px;
+            }
+            .timeline__dot {
+                left: -2rem;
+                width: 20px;
+                height: 20px;
+            }
+            .timeline__dot::after {
+                width: 5px;
+                height: 5px;
+            }
+            .timeline__time {
+                font-size: 1.1rem;
+            }
+            .timeline__title {
+                font-size: 0.95rem;
+            }
+            .timeline__desc {
+                font-size: 0.9rem;
+            }
+            .details__section-title {
+                font-size: 1.4rem;
+            }
+            .location-card__title {
+                font-size: 1.2rem;
+            }
+            .location-card__address strong {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==================== NAVIGATION ==================== -->
+    <nav class="nav" id="nav">
+        <a href="#hero" class="nav__logo">U <span>&</span> V</a>
+        <ul class="nav__links" id="navLinks">
+            <li><a href="#details" class="nav__link">Детали</a></li>
+            <li><a href="#dress-code" class="nav__link">Дресс-код</a></li>
+            <li><a href="#rsvp" class="nav__link">Подтверждение</a></li>
+        </ul>
+        <button class="nav__burger" id="navBurger" aria-label="Меню">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- ==================== HERO ==================== -->
+    <section class="hero" id="hero">
+        <img
+        class="hero__image"
+        src="main.jpg"
+        alt="Фото пары — Ульяна и Вадим"
+        loading="eager"
+        style="object-fit: cover; object-position: center 20%;"
+        onerror="this.style.display='none'; this.nextElementSibling.style.background='linear-gradient(135deg, #3d3530 0%, #5c4a3d 40%, #3d3530 80%, #2b2b2b 100%)'; this.nextElementSibling.style.position='absolute'; this.nextElementSibling.style.inset='0';"
+        >
+        <div class="hero__overlay"></div>
+
+        <!-- Боковые вертикальные фото -->
+        <img src="left.jpg" alt="Фото невесты" class="hero__side-photo hero__side-photo--left" loading="lazy" style="object-fit: cover; object-position: center 20%;">
+        <img src="right.jpg" alt="Фото жениха" class="hero__side-photo hero__side-photo--right" loading="lazy" style="object-fit: cover; object-position: center 20%;">
+
+        <div class="hero__content">
+            <p class="hero__pretitle">Приглашаем на свадьбу</p>
+            <h1 class="hero__names">
+                Ульяна <span>&</span> Вадим
+            </h1>
+            <div class="hero__divider"></div>
+            <p class="hero__date">7 июля 2027 года</p>
+        </div>
+    </section>
+
+
+    <!-- ==================== COUNTDOWN ==================== -->
+    <section class="countdown-section reveal" id="countdown">
+        <p class="countdown__title">До нашего дня осталось</p>
+        <div class="countdown__grid" id="countdownGrid">
+            <div class="countdown__item">
+                <span class="countdown__number" id="days">--</span>
+                <span class="countdown__label">Дней</span>
+            </div>
+            <span class="countdown__divider">:</span>
+            <div class="countdown__item">
+                <span class="countdown__number" id="hours">--</span>
+                <span class="countdown__label">Часов</span>
+            </div>
+            <span class="countdown__divider">:</span>
+            <div class="countdown__item">
+                <span class="countdown__number" id="minutes">--</span>
+                <span class="countdown__label">Минут</span>
+            </div>
+            <span class="countdown__divider">:</span>
+            <div class="countdown__item">
+                <span class="countdown__number" id="seconds">--</span>
+                <span class="countdown__label">Секунд</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DETAILS — ВЕРТИКАЛЬНЫЙ ТАЙМЛАЙН ==================== -->
+    <section class="details reveal" id="details">
+        <div class="details__inner">
+            <h2 class="details__section-title">Программа дня</h2>
+            <p class="details__section-subtitle">7 июля 2027 года</p>
+            <div class="details__divider"></div>
+
+            <!-- Таймлайн событий -->
+            <div class="timeline">
+                <div class="timeline__item">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__time">11:00</div>
+                    <div class="timeline__title">Церемония</div>
+                    <div class="timeline__desc">Сбор гостей</div>
+                </div>
+
+                <div class="timeline__item">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__time">12:00</div>
+                    <div class="timeline__title">Фуршет</div>
+                    <div class="timeline__desc">Легкие закуски</div>
+                </div>
+
+                <div class="timeline__item">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__time">13:00</div>
+                    <div class="timeline__title">Фотосессия</div>
+                    <div class="timeline__desc">Фотопрогулки по самым красивым местам Нижнего Новгорода</div>
+                </div>
+
+                <div class="timeline__item">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__time">16:00</div>
+                    <div class="timeline__title">Банкет</div>
+                    <div class="timeline__desc">Главная часть мероприятия</div>
+                </div>
+
+                <div class="timeline__item">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__time">18:30</div>
+                    <div class="timeline__title">Танцы и развлечения</div>
+                    <div class="timeline__desc">Свадебный торт, танцевальная программа и конкурсы</div>
+                </div>
+
+                <div class="timeline__item">
+                    <div class="timeline__dot"></div>
+                    <div class="timeline__time">23:00</div>
+                    <div class="timeline__title">Завершения</div>
+                    <div class="timeline__desc">Трансфер по городу будет огранизован</div>
+                </div>
+            </div>
+
+            <!-- Карточка локации -->
+            <div class="location-card">
+                <span class="location-card__icon">&#127801;</span>
+                <h3 class="location-card__title">Место проведения</h3>
+                <p class="location-card__subtitle">Локация</p>
+                <div class="location-card__line"></div>
+                <div class="location-card__address">
+                    <strong>Загс «Дом Бракосочетания»</strong>
+                    Нижний Новгород, ул. Малая Покровская д. 9
+                </div>
+            </div>
+
+            <!-- Карточка размещения гостей -->
+            <div class="location-card">
+                <span class="location-card__icon">&#127968;</span>
+                <h3 class="location-card__title">Размещение гостей</h3>
+                <p class="location-card__subtitle">Проживание</p>
+                <div class="location-card__line"></div>
+                <div class="location-card__address">
+                
+                    Ваш отдых оплачен на 3 дня<br>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== DRESS CODE ==================== -->
+    <section class="dress-code reveal" id="dress-code">
+        <div class="dress-code__inner">
+            <p class="dress-code__label">Дресс-код</p>
+            <p class="dress-code__desc">
+                Будем очень признательны, если вы придержитесь цветовой палитры нашего торжества в своих нарядах<br>
+                
+            </p>
+            <div class="dress-code__colors">
+                <span class="dress-code__color" style="background:#f6e882;" ></span>
+                <span class="dress-code__color" style="background:#4a8452;" ></span>
+                <span class="dress-code__color" style="background:#93b180;" ></span>
+                <span class="dress-code__color" style="background:#bb4a4a;" ></span>
+                <span class="dress-code__color" style="background:#f07c7c;" ></span>
+                <span class="dress-code__color" style="background:#e16fe3;" ></span>
+                <span class="dress-code__color" style="background:#587fe3;" ></span>
+            </div>
+            </br>
+            <p class="dress-code__desc">
+                P.S. Пожалуйста, воздержитесь от белого, бежевого и коричневого в своих нарядах :)<br>
+                
+            </p>
+        </div>
+    </section>
+
+    <!-- ==================== RSVP FORM ==================== -->
+    <section class="rsvp reveal" id="rsvp">
+        <div class="rsvp__inner">
+            <div class="rsvp__header">
+                <span class="rsvp__pretitle">Подтверждение присутствия</span>
+                <h2 class="rsvp__title">Будем рады видеть вас</h2>
+                <p class="rsvp__subtitle">Пожалуйста, подтвердите своё присутствие до 1 ноября 2026 года</p>
+                <div class="rsvp__divider"></div>
+            </div>
+
+            <!-- Форма -->
+            <form class="rsvp__form" id="rsvpForm" action="https://formsubmit.co/ajax/7c89134dfa2f2283dfa9898d29bbad34" method="POST">
+                
+                <!-- Настройки FormSubmit (невидимы для пользователя) -->
+                <input type="hidden" name="_captcha" value="false"> <!-- Отключает капчу перед отправкой -->
+                <input type="hidden" name="_subject" value="Новый RSVP ответ на свадьбу!"> <!-- Тема письма -->
+                <input type="hidden" name="_template" value="table"> <!-- Красивый вид таблицы в письме -->
+
+                <div class="rsvp__row">
+                    <div class="rsvp__group">
+                        <label class="rsvp__label" for="firstName">Имя</label>
+                        <!-- Добавлен атрибут name, он обязателен для FormSubmit -->
+                        <input class="rsvp__input" type="text" id="firstName" name="Имя" placeholder="Ваше имя" required>
+                    </div>
+                    <div class="rsvp__group">
+                        <label class="rsvp__label" for="lastName">Фамилия</label>
+                        <input class="rsvp__input" type="text" id="lastName" name="Фамилия" placeholder="Ваша фамилия" required>
+                    </div>
+                </div>
+                <div class="rsvp__group">
+                    <label class="rsvp__label">Вы будете присутствовать?</label>
+                    <div class="rsvp__radio-group">
+                        <label class="rsvp__radio">
+                            <input type="radio" name="Присутствие" value="Да, с удовольствием" required>
+                            <span class="rsvp__radio-custom"></span>
+                            Да, с удовольствием
+                        </label>
+                        <label class="rsvp__radio">
+                            <input type="radio" name="Присутствие" value="К сожалению, не смогу">
+                            <span class="rsvp__radio-custom"></span>
+                            К сожалению, не смогу
+                        </label>
+                    </div>
+                </div>
+                <div class="rsvp__row">
+                    <div class="rsvp__group">
+                        <label class="rsvp__label" for="guests">Количество детей</label>
+                        <select class="rsvp__select" id="guests" name="Количество детей">
+                            <option value="0 детей">0 детей</option>
+                            <option value="1 ребенок">1 ребенок</option>
+                            <option value="2 ребенка" selected>2 ребенка</option>
+                            <option value="3 ребенка">3 ребенка</option>
+                        </select>
+                    </div>
+                    <div class="rsvp__group">
+                        <label class="rsvp__label" for="dietary">Особые пожелания по меню</label>
+                        <select class="rsvp__select" id="dietary" name="Пожелания по меню">
+                            <option value="Без ограничений">Без ограничений</option>
+                            <option value="Вегетарианское">Вегетарианское</option>
+                            <option value="Веганское">Веганское</option>
+                            <option value="Есть аллергия (указать в сообщении)">Есть аллергия (указать в сообщении)</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="rsvp__group full">
+                    <label class="rsvp__label" for="message">Сообщение для молодожёнов</label>
+                    <textarea class="rsvp__textarea" id="message" name="Сообщение" rows="4" placeholder="Ваши пожелания, вопросы или тёплые слова..."></textarea>
+                </div>
+                <button type="submit" class="rsvp__submit">Отправить подтверждение</button>
+            </form>
+
+
+            <!-- Сообщение об успехе -->
+            <div class="rsvp__success" id="rsvpSuccess">
+                <div class="rsvp__success-icon">&#10003;</div>
+                <p class="rsvp__success-text">
+                    Благодарим вас!<br>Подтверждение получено.
+                </p>
+                <p style="font-family:'Cormorant Garamond',serif; font-weight:500; color:var(--taupe); margin-top:0.8rem; font-style:italic;">
+                    Мы свяжемся с вами для уточнения деталей.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <p class="footer__names">Ульяна & Вадим</p>
+        <p class="footer__text">7 июля 2027 &bull; Загс «Дом Бракосочетания» &bull; С любовью</p>
+    </footer>
+
+    <script>
+        (function() {
+            // ============ NAVIGATION SCROLL EFFECT ============
+            const nav = document.getElementById('nav');
+            const navBurger = document.getElementById('navBurger');
+            const navLinks = document.getElementById('navLinks');
+            const allNavLinks = navLinks.querySelectorAll('.nav__link');
+
+            function updateNav() {
+                if (window.scrollY > 60) {
+                    nav.classList.add('scrolled');
+                } else {
+                    nav.classList.remove('scrolled');
+                }
+            }
+
+            window.addEventListener('scroll', updateNav, { passive: true });
+            updateNav();
+
+            // ============ MOBILE BURGER MENU ============
+            navBurger.addEventListener('click', () => {
+                navBurger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navBurger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!nav.contains(e.target) && navLinks.classList.contains('active')) {
+                    navBurger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                }
+            });
+
+            // ============ COUNTDOWN TIMER ============
+            const weddingDate = new Date('2027-07-07T16:00:00+03:00');
+
+            function updateCountdown() {
+                const now = new Date();
+                const diff = weddingDate - now;
+
+                const daysEl = document.getElementById('days');
+                const hoursEl = document.getElementById('hours');
+                const minutesEl = document.getElementById('minutes');
+                const secondsEl = document.getElementById('seconds');
+
+                if (diff <= 0) {
+                    daysEl.textContent = '00';
+                    hoursEl.textContent = '00';
+                    minutesEl.textContent = '00';
+                    secondsEl.textContent = '00';
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+                const minutes = Math.floor((diff / (1000 * 60)) % 60);
+                const seconds = Math.floor((diff / 1000) % 60);
+
+                daysEl.textContent = String(days).padStart(2, '0');
+                hoursEl.textContent = String(hours).padStart(2, '0');
+                minutesEl.textContent = String(minutes).padStart(2, '0');
+                secondsEl.textContent = String(seconds).padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+
+            // ============ SCROLL REVEAL ============
+            const revealElements = document.querySelectorAll('.reveal');
+
+            function revealOnScroll() {
+                const windowHeight = window.innerHeight;
+                const revealPoint = 120;
+
+                revealElements.forEach(el => {
+                    const elementTop = el.getBoundingClientRect().top;
+                    if (elementTop < windowHeight - revealPoint) {
+                        el.classList.add('visible');
+                    }
+                });
+            }
+
+            window.addEventListener('scroll', revealOnScroll, { passive: true });
+            revealOnScroll();
+
+            // ============ RSVP FORM HANDLING ============
+            const rsvpForm = document.getElementById('rsvpForm');
+            const rsvpSuccess = document.getElementById('rsvpSuccess');
+
+            rsvpForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const firstName = document.getElementById('firstName').value.trim();
+                const lastName = document.getElementById('lastName').value.trim();
+                const attendance = document.querySelector('input[name="attendance"]:checked');
+
+                if (!firstName || !lastName ||  !attendance) {
+                    if (!firstName) document.getElementById('firstName').style.borderColor = '#c0392b';
+                    if (!lastName) document.getElementById('lastName').style.borderColor = '#c0392b';
+                
+
+                    rsvpForm.style.animation = 'shake 0.5s ease';
+                    fetch(rsvpForm.action, {
+                        method: 'POST',
+                        body: new FormData(rsvpForm),
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            rsvpForm.style.display = 'none';
+                            rsvpSuccess.classList.add('visible');
+                        } else {
+                            alert('Что-то пошло не так...');
+                        }
+                    })
+                    return;
+                }
+
+                const submitBtn = rsvpForm.querySelector('.rsvp__submit');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Отправляется...';
+                submitBtn.disabled = true;
+                submitBtn.style.opacity = '0.7';
+                submitBtn.style.cursor = 'not-allowed';
+
+                setTimeout(() => {
+                    rsvpForm.style.display = 'none';
+                    rsvpSuccess.classList.add('visible');
+
+                    const formData = {
+                        firstName,
+                        lastName,
+                        attendance: attendance.value,
+                        guests: document.getElementById('guests').value,
+                        dietary: document.getElementById('dietary').value,
+                        message: document.getElementById('message').value.trim(),
+                    };
+                    console.log('RSVP Data (Ульяна & Вадим):', formData);
+
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                    submitBtn.style.cursor = 'pointer';
+                }, 1200);
+            });
+
+            // ============ SHAKE ANIMATION ============
+            const shakeKeyframes = `
+            @keyframes shake {
+              0%, 100% { transform: translateX(0); }
+              20% { transform: translateX(-8px); }
+              40% { transform: translateX(8px); }
+              60% { transform: translateX(-5px); }
+              80% { transform: translateX(5px); }
+            }
+          `;
+            const shakeStyle = document.createElement('style');
+            shakeStyle.textContent = shakeKeyframes;
+            document.head.appendChild(shakeStyle);
+
+            // ============ SMOOTH SCROLL ============
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        e.preventDefault();
+                        const navHeight = nav.classList.contains('scrolled') ? 70 : 80;
+                        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - navHeight;
+                        window.scrollTo({
+                            top: targetPosition,
+                            behavior: 'smooth',
+                        });
+                    }
+                });
+            });
+
+            console.log(
+                '%c💍 %cСвадебный сайт %c• %cУльяна & Вадим %c• %c15.06.2027',
+                'font-size:1.2em;',
+                'color:#B8975A; font-family:serif; font-size:1.1em;',
+                '',
+                'color:#1A1A1A; font-family:serif; font-style:italic;',
+                '',
+                'color:#5C2D36;'
+            );
+        })();
+    </script>
+</body>
+</html>
