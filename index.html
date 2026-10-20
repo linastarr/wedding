@@ -332,9 +332,39 @@
         }
 
         /* Скрываем боковые фото на узких экранах */
+        /* Адаптация боковых фото на узких экранах (планшеты) */
+        @keyframes sideFadeInMobileRight {
+            from { opacity: 0; transform: rotate(0deg) scale(0.8); }
+            to { opacity: 1; transform: rotate(5deg) scale(1); }
+        }
+
+        @keyframes sideFadeInMobileLeft {
+            from { opacity: 0; transform: rotate(0deg) scale(0.8); }
+            to { opacity: 1; transform: rotate(-5deg) scale(1); }
+        }
+
         @media (max-width: 1024px) {
             .hero__side-photo {
-                display: none;
+                width: 140px; /* Уменьшаем размер для планшетов */
+                border-width: 2px;
+            }
+            .hero__side-photo--right {
+                top: 110px; /* Отступ сверху, чтобы не перекрывать меню */
+                right: 30px;
+                transform: rotate(5deg);
+                animation: sideFadeInMobileRight 1s ease-out 0.5s both;
+            }
+            .hero__side-photo--left {
+                top: auto; /* Убираем центрирование по вертикали */
+                bottom: 60px;
+                left: 30px;
+                transform: rotate(-5deg);
+                animation: sideFadeInMobileLeft 1s ease-out 0.5s both;
+            }
+            
+            .hero__side-photo--right:hover, 
+            .hero__side-photo--left:hover {
+                transform: rotate(0deg) scale(1.05);
             }
         }
 
@@ -1081,6 +1111,17 @@
         }
 
         @media (max-width: 480px) {
+            .hero__side-photo {
+                width: 95px; /* Совсем маленькие для телефонов */
+            }
+            .hero__side-photo--right {
+                top: 90px;
+                right: 15px;
+            }
+            .hero__side-photo--left {
+                bottom: 40px;
+                left: 15px;
+            }
             .hero__pretitle {
                 font-size: 0.65rem;
                 letter-spacing: 0.25em;
